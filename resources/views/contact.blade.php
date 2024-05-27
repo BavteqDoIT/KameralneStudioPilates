@@ -31,7 +31,7 @@
             </ul>
         </p>
         <p>
-            <iframe width="1000" height="252" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" id="gmap_canvas" src="https://maps.google.com/maps?width=1000&amp;height=252&amp;hl=en&amp;q=Kameralne%20Studio%20Pilates%20B%C4%99dzin+(Kameralne%20Studio%20Pilates)&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe> <a href='http://www.counterliczniki.com'>licznik</a> <script type='text/javascript' src='https://embedmaps.com/google-maps-authorization/script.js?id=ea2bfd575223e95fccdb4752d017b322714b4e39'></script>
+            <embed class="uagb-google-map__iframe" title="Google Map for " src="https://maps.google.com/maps?q=B%C4%99dzin%2C%20Modrzejowska%2095&amp;z=15&amp;hl=pl&amp;t=m&amp;output=embed&amp;iwloc=near" width='100%' height="300" loading="lazy">
         </p>
         <p> Serdecznie zapraszamy !</p>
     </div>

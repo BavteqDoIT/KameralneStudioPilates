@@ -28,7 +28,7 @@
 
 							<!-- Banner -->
 								<section id="banner">
-                                        @yield('content')
+                                    @yield('content')
 								</section>
 						</div>
 					</div>

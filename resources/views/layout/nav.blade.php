@@ -3,12 +3,12 @@
         <h2>Menu</h2>
     </header>
     <ul>
-        <li><a href="aboutus">O NAS</a></li>
-        <li><a href="studio">STUDIO</a></li>
-        <li><a href="pilates">PILATES</a></li>
-        <li><a href="ofert">OFERTA / CENNIK</a></li>
-        <li><a href="schedule">GRAFIK</a></li>
-        <li><a href="contact">KONTAKT</a></li>
+        <li><a href="{{ route('aboutus') }}">O NAS</a></li>
+        <li><a href="{{ route('studio') }}">STUDIO</a></li>
+        <li><a href="{{ route('pilates') }}">PILATES</a></li>
+        <li><a href="{{ route('ofert') }}">OFERTA / CENNIK</a></li>
+        <li><a href="{{ route('schedule') }}">GRAFIK</a></li>
+        <li><a href="{{ route('contact') }}">KONTAKT</a></li>
         @auth
             <li>
                 <span class="opener">Mój profil</span>
@@ -17,6 +17,14 @@
                     <li><a href="#">Zajęcia</a></li>
                 </ul>
             </li>
+            <li>
+                <span class="opener">Administrator</span>
+                <ul>
+                    <li><a href="{{ route('admin.users') }}">Wyświetl użytkowników</a></li>
+                    <li><a href="#">TBC</a></li>
+                </ul>
+            </li>
+
         @endauth
     </ul>
 </nav>
