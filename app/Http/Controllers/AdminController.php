@@ -15,7 +15,7 @@ class AdminController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            return view('admin.index', ['username' => $user->name, 'users' => User::all()]);
+            return view('admin.index', ['username' => $user->name, 'users' => User::paginate(3)]);
         } else {
             return view('auth.login', ['username' => 'Nieznajomy']);
         }
