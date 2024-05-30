@@ -34,6 +34,8 @@ Route::get('rules', [Rules::class,'show'])->name('rules');
 
 Route::get('admin/users', [AdminController::class,'index'])->name('admin.users');
 
+Route::delete('admin/{id}', [AdminController::class,'destroy'])->middleware("auth");
+
 Auth::routes();
 
 Route::get('/logowanie', [App\Http\Controllers\HomeController::class, 'index'])->name('/');

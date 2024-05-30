@@ -9,6 +9,8 @@
 		<title> {{ config('app.name') }} </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{csrf_token()}}">
         <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 		<link rel="icon" href="{{ asset('images/favicon.png') }}">
 	</head>
@@ -67,11 +69,16 @@
 			</div>
 
 		<!-- Scripts -->
-            <script src="../../js/jquery.min.js"></script>
-			<script src="../../js/browser.min.js"></script>
-			<script src="../../js/breakpoints.min.js"></script>
-			<script src="../../js/util.js"></script>
-			<script src="../../js/main.js"></script>
+
+            <script src="{{ asset('js/jquery.min.js') }}"></script>
+			<script src="{{ asset('js/browser.min.js') }}"></script>
+			<script src="{{ asset('js/breakpoints.min.js') }}"></script>
+			<script src="{{ asset('js/util.js') }}"></script>
+			<script src="{{ asset('js/main.js') }}"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script type="text/javascript">
+                @yield('javascript')
+            </script>
 
 	</body>
 </html>

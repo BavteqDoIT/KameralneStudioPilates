@@ -66,6 +66,10 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $delete = User::find($id);
+        $delete->delete();
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 }

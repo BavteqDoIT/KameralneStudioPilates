@@ -1,5 +1,6 @@
 @extends('layout.layout')
 @section('content')
+
     <div>
         <table class="table table-hover">
             <thead>
@@ -20,7 +21,11 @@
                         <td>{{ $user -> name }}</td>
                         <td>{{ $user -> surname }}</td>
                         <td>{{ $user -> phone_number }}</td>
-                        <td><a href="#" class="button primary big">USUŃ</a></td>
+                        <td>
+                            <button class="delete" data-id="{{ $user -> id }}">
+                                USUŃ
+                            </button>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
@@ -29,4 +34,27 @@
             {{$users->links()}}
         </section>
     </div>
+@endsection
+@section('javascript')
+    $(function() {
+        $('.delete').click(function() {
+            $.ajaxSetup({
+                headers:
+                { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+            });
+
+            $.ajax({
+                method: "DELETE",
+                url: "http://pilatesbedzin.test/admin/" + $(this).data("id"),
+                {{-- data: { id: $(this).data("id")} --}}
+            })
+            .done(function(response) {
+                window.location.reload();
+            })
+            .fail(function(response){
+                alert("Error");
+            });
+
+        });
+    });
 @endsection
