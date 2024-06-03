@@ -17,14 +17,15 @@
                     <li><a href="#">Zajęcia</a></li>
                 </ul>
             </li>
-            <li>
-                <span class="opener">Administrator</span>
-                <ul>
-                    <li><a href="{{ route('admin.users') }}">Wyświetl użytkowników</a></li>
-                    <li><a href="#">TBC</a></li>
-                </ul>
-            </li>
-
+            @can('isAdmin')
+                <li>
+                    <span class="opener">Administrator</span>
+                    <ul>
+                        <li><a href="{{ route('admin.users') }}">Wyświetl użytkowników</a></li>
+                        <li><a href="#">TBC</a></li>
+                    </ul>
+                </li>
+            @endcan
         @endauth
     </ul>
 </nav>

@@ -32,9 +32,10 @@ Route::get('privacy', [Privacy::class,'show'])->name('privacy');
 
 Route::get('rules', [Rules::class,'show'])->name('rules');
 
-Route::get('admin/users', [AdminController::class,'index'])->name('admin.users');
-
-Route::delete('admin/{id}', [AdminController::class,'destroy'])->middleware("auth");
+Route::middleware(['can:isAdmin'])->group(function(){
+    Route::get('admin/users', [AdminController::class,'index'])->name('admin.users');
+    Route::delete('admin/{id}', [AdminController::class,'destroy']);
+});
 
 Auth::routes();
 
