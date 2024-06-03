@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AboutUs;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClassController;
+use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\Contact;
 use App\Http\Controllers\Ofert;
 use App\Http\Controllers\Pilates;
@@ -23,6 +25,14 @@ Route::get('studio', [Studio::class,'show'])->name('studio');
 Route::get('pilates', [Pilates::class,'show'])->name('pilates');
 
 Route::get('ofert', [Ofert::class,'show'])->name('ofert');
+
+Route::get('classes', [ClassesController::class,'index'])->name('classes.index')->middleware('auth');
+Route::get('classes/create', [ClassesController::class,'create'])->name('classes.create')->middleware('auth');
+Route::get('classes/{classes}', [ClassesController::class,'show'])->name('classes.show')->middleware('auth');
+Route::post('classes', [ClassesController::class,'store'])->name('classes.store')->middleware('auth');
+Route::get('classes/edit/{classes}', [ClassesController::class,'edit'])->name('classes.edit')->middleware('auth');
+Route::post('classes/{classes}', [ClassesController::class,'update'])->name('classes.update')->middleware('auth');
+Route::delete('classes/{id}', [ClassesController::class,'destroy'])->name('classes.destroy');
 
 Route::get('schedule', [Schedule::class,'show'])->name('schedule');
 

@@ -21,10 +21,19 @@
                 <li>
                     <span class="opener">Administrator</span>
                     <ul>
-                        <li><a href="{{ route('admin.users') }}">Wyświetl użytkowników</a></li>
-                        <li><a href="#">TBC</a></li>
+                        <li><a href="{{ route('admin.users')}}">Wyświetl użytkowników</a></li>
+                        <li><a href="{{ route('classes.index')}}">Lista zajęć</a></li>
                     </ul>
                 </li>
+            @endcan
+            @can('isWorker')
+            <li>
+                <span class="opener">Pracownik</span>
+                <ul>
+                    <li><a href="#">Wyświetl klientów</a></li>
+                    <li><a href="{{ route('classes.index')}}">Lista zajęć</a></li>
+                </ul>
+            </li>
             @endcan
         @endauth
     </ul>

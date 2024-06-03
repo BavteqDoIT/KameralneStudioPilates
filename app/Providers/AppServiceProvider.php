@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->defineUserRoleGate('isAdmin',UserRole::ADMIN);
         $this->defineUserRoleGate('isUser',UserRole::USER);
-        $this->defineUserRoleGate('isWorker',UserRole::USER);
+        $this->defineUserRoleGate('isWorker',UserRole::WORKER);
     }
 
     private function defineUserRoleGate(string $name, string $role): void{
