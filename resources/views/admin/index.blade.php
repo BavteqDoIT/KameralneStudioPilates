@@ -9,6 +9,7 @@
                     <th scope="col">Email</th>
                     <th scope="col">Imię</th>
                     <th scope="col">Nazwisko</th>
+                    <th scope="col">Rola</th>
                     <th scope="col">Numer telefonu</th>
                     <th scope="col">Akcje</th>
                 </tr>
@@ -20,6 +21,7 @@
                         <td>{{ $user -> email }}</td>
                         <td>{{ $user -> name }}</td>
                         <td>{{ $user -> surname }}</td>
+                        <td>{{ $user -> role }}</td>
                         <td>{{ $user -> phone_number }}</td>
                         <td>
                             <button class="delete" data-id="{{ $user -> id }}">

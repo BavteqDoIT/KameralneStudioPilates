@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Classes;
+use App\Models\Passes;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ClassesController extends Controller
+class PassesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class ClassesController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            return view("classes.index", ['username' => $user->name,'classes' => Classes::paginate(3)]);
+            return view("passes.index", ['username' => $user->name,'passes' => Passes::paginate(3)]);
         } else {
             return view('auth.login', ['username' => 'Nieznajomy']);
         }
@@ -30,7 +30,7 @@ class ClassesController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            return view("classes.create", ['username' => $user->name]);
+            return view("passes.create", ['username' => $user->name]);
         } else {
             return view('auth.login', ['username' => 'Nieznajomy']);
         }
@@ -41,19 +41,19 @@ class ClassesController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $classes = new Classes($request->all());
-        $classes -> save();
-        return redirect(route('classes.index'));
+        $passes = new Passes($request->all());
+        $passes -> save();
+        return redirect(route('passes.index'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Classes $classes): View
+    public function show(Passes $passes): View
     {
         if (Auth::check()) {
             $user = Auth::user();
-            return view("classes.show", ['username' => $user->name, 'classes' => $classes]);
+            return view("passes.show", ['username' => $user->name, 'classes' => $passes]);
         } else {
             return view('auth.login', ['username' => 'Nieznajomy']);
         }
@@ -62,11 +62,11 @@ class ClassesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Classes $classes): View
+    public function edit(Passes $passes): View
     {
         if (Auth::check()) {
             $user = Auth::user();
-            return view("classes.edit", ['username' => $user->name,'classes' => $classes]);
+            return view("passes.edit", ['username' => $user->name,'passes' => $passes]);
         } else {
             return view('auth.login', ['username' => 'Nieznajomy']);
         }
@@ -75,20 +75,19 @@ class ClassesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Classes $classes): RedirectResponse
+    public function update(Request $request, Passes $passes): RedirectResponse
     {
-        $classes->fill($request->all());
-        $classes->save();
-        return redirect(route('classes.index'));
+        $passes->fill($request->all());
+        $passes->save();
+        return redirect(route('passes.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Classes $classes,$id)
+    public function destroy(Passes $passes, $id)
     {
-
-        $delete = Classes::find($id);
+        $delete = Passes::find($id);
         $delete->delete();
         return response()->json([
             'status' => 'success'

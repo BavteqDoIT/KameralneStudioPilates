@@ -15,6 +15,7 @@
                 <ul>
                     <li><a href="#">Edytuj Profil</a></li>
                     <li><a href="#">Zajęcia</a></li>
+                    <li><a href="{{ route('passes.index')}}">Karnet</a></li>
                 </ul>
             </li>
             @can('isAdmin')

@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\AboutUs;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ClassController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\Contact;
 use App\Http\Controllers\Ofert;
+use App\Http\Controllers\PassesController;
 use App\Http\Controllers\Pilates;
 use App\Http\Controllers\Privacy;
 use App\Http\Controllers\Rules;
@@ -25,6 +25,14 @@ Route::get('studio', [Studio::class,'show'])->name('studio');
 Route::get('pilates', [Pilates::class,'show'])->name('pilates');
 
 Route::get('ofert', [Ofert::class,'show'])->name('ofert');
+
+Route::get('passes', [PassesController::class,'index'])->name('passes.index')->middleware('auth');
+Route::get('passes/create', [PassesController::class,'create'])->name('passes.create')->middleware('auth');
+Route::get('passes/{passes}', [PassesController::class,'show'])->name('passes.show')->middleware('auth');
+Route::post('passes', [PassesController::class,'store'])->name('passes.store')->middleware('auth');
+Route::get('passes/edit/{passes}', [PassesController::class,'edit'])->name('passes.edit')->middleware('auth');
+Route::post('passes/{passes}', [PassesController::class,'update'])->name('passes.update')->middleware('auth');
+Route::delete('passes/{id}', [PassesController::class,'destroy'])->name('passes.destroy');
 
 Route::get('classes', [ClassesController::class,'index'])->name('classes.index')->middleware('auth');
 Route::get('classes/create', [ClassesController::class,'create'])->name('classes.create')->middleware('auth');
