@@ -41,6 +41,7 @@
                             <td>{{ $pass -> price }}</td>
                             <td>
                                 <a href="{{route('passes.show', $pass -> id)}}"><button>PODGLĄD</button></a>
+                                <a href="{{route('passes.buy', $pass -> id)}}"><button>ZAKUP</button></a>
                             @can('isAdmin')
                                 <a href="{{route('passes.edit', $pass -> id)}}"><button>EDYTUJ</button></a>
                                 <button class="primary delete" data-id="{{ $pass -> id }}">

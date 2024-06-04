@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Passes;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -93,4 +94,27 @@ class PassesController extends Controller
             'status' => 'success'
         ]);
     }
+
+    public function buy(Passes $passes): View
+    {
+        if (Auth::check()) {
+            $user = Auth::user();
+            return view("passes.buy", ['username' => $user->name,'passes' => $passes]);
+        } else {
+            return view('auth.login', ['username' => 'Nieznajomy']);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function transaction(Request $request, Passes $passes): RedirectResponse
+{
+    $user = $request->user();
+    $user->passes_id = $passes->id;
+    $user->save();
+
+    return redirect(route('passes.index'));
+}
+
 }

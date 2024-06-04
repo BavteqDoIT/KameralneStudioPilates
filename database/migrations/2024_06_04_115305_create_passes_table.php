@@ -18,6 +18,10 @@ return new class extends Migration
             $table->decimal('price');
             $table->timestamps();
         });
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('passes_id')->nullable()->after('role');
+            $table->foreign('passes_id')->references('id')->on('passes')->onDelete('cascade');
+            });
     }
 
     /**
@@ -25,6 +29,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_passes_id_foreign');
+            $table->dropColumn('passes_id');
+            });
         Schema::dropIfExists('passes');
     }
 };

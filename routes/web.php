@@ -33,6 +33,8 @@ Route::post('passes', [PassesController::class,'store'])->name('passes.store')->
 Route::get('passes/edit/{passes}', [PassesController::class,'edit'])->name('passes.edit')->middleware('auth');
 Route::post('passes/{passes}', [PassesController::class,'update'])->name('passes.update')->middleware('auth');
 Route::delete('passes/{id}', [PassesController::class,'destroy'])->name('passes.destroy');
+Route::get('passes/buy/{passes}', [PassesController::class,'buy'])->name('passes.buy')->middleware('auth');
+Route::post('passes/{passes}', [PassesController::class,'transaction'])->name('passes.transaction')->middleware('auth');
 
 Route::get('classes', [ClassesController::class,'index'])->name('classes.index')->middleware('auth');
 Route::get('classes/create', [ClassesController::class,'create'])->name('classes.create')->middleware('auth');
