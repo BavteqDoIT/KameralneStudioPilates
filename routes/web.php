@@ -52,6 +52,8 @@ Route::get('rules', [Rules::class,'show'])->name('rules');
 
 Route::middleware(['can:isAdmin'])->group(function(){
     Route::get('admin/users', [AdminController::class,'index'])->name('admin.users');
+    Route::get('admin/edit/{user}', [AdminController::class,'edit'])->name('admin.edit')->middleware('auth');
+    Route::post('admin/{user}', [AdminController::class,'update'])->name('admin.update')->middleware('auth');
     Route::delete('admin/{id}', [AdminController::class,'destroy']);
 });
 

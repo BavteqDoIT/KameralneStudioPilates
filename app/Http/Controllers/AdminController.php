@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserRole;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         if (Auth::check()) {
             $user = Auth::user();
@@ -21,20 +24,16 @@ class AdminController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $user = new User($request->all());
+        $user -> save();
+        return redirect(route('admin.users'));
     }
 
     /**
@@ -48,17 +47,30 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        if (Auth::check()) {
+            $currentUser = Auth::user();
+            $userToEdit = User::findOrFail($id);
+            $roles = UserRole::TYPES;
+            return view("admin.edit", [
+                'username' => $currentUser->name,
+                'user' => $userToEdit,
+                'roles' => $roles
+            ]);
+        } else {
+            return view('auth.login', ['username' => 'Nieznajomy']);
+        }
     }
 
     /**
-     * Update the specified resource in storage.
+     * Show the form for creating a new resource.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user): RedirectResponse
     {
-        //
+        $user->fill($request->all());
+        $user->save();
+        return redirect(route('admin.users'));
     }
 
     /**

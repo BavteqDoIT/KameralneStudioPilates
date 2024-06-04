@@ -27,6 +27,7 @@
                             <button class="delete" data-id="{{ $user -> id }}">
                                 USUŃ
                             </button>
+                            <a href="{{route('admin.edit', $user -> id)}}"><button class="primary">EDYTUJ</button></a>
                         </td>
                     </tr>
                 @endforeach
