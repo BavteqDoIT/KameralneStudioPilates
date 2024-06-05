@@ -1,7 +1,23 @@
 @extends('layout.layout')
 @section('content')
     <div>
-        <div class = "row">
+        <h1>Twój Karnet</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Nazwa</th>
+                    <th scope="col">Cena</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>{{ $passesUser->name }}</td>
+                        <td>{{ $passesUser->price }}</td>
+                    </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
             <div class="col-6">
                 <h1>Karnety</h1>
             </div>
@@ -22,11 +38,10 @@
 
         </div>
 
-        <div class = "row">
+        <div class="row">
             <table>
                 <thead>
                     <tr>
-                        {{-- <th scope="col">#</th> --}}
                         <th scope="col">Nazwa</th>
                         <th scope="col">Opis</th>
                         <th scope="col">Cena</th>
@@ -35,25 +50,27 @@
                 <tbody>
                     @foreach ($passes as $pass)
                         <tr>
-                            {{-- <th scope="row">{{ $class -> id }}</th> --}}
-                            <td>{{ $pass -> name }}</td>
-                            <td>{{ $pass -> description }}</td>
-                            <td>{{ $pass -> price }}</td>
+                            <td>{{ $pass->name }}</td>
+                            <td>{{ $pass->description }}</td>
+                            <td>{{ $pass->price }}</td>
+                            <td>{{ $pass->id }}</td>
                             <td>
-                                <a href="{{route('passes.show', $pass -> id)}}"><button>PODGLĄD</button></a>
-                                <a href="{{route('passes.buy', $pass -> id)}}"><button>ZAKUP</button></a>
-                            @can('isAdmin')
-                                <a href="{{route('passes.edit', $pass -> id)}}"><button>EDYTUJ</button></a>
-                                <button class="primary delete" data-id="{{ $pass -> id }}">
-                                    USUŃ
-                                </button>
-                            @endcan
-                            @can('isWorker')
-                                <a href="{{route('passes.edit', $pass -> id)}}"><button>EDYTUJ</button></a>
-                                <button class="primary delete" data-id="{{ $pass -> id }}">
-                                    USUŃ
-                                </button>
-                            @endcan
+                                <a href="{{ route('passes.show', $pass->id) }}"><button>PODGLĄD</button></a>
+                                @if (!isset($passesUser) || $passesUser->id != $pass->id)
+                                    <a href="{{ route('passes.buy', $pass->id) }}"><button>ZAKUP</button></a>
+                                @endif
+                                @can('isAdmin')
+                                    <a href="{{ route('passes.edit', $pass->id) }}"><button>EDYTUJ</button></a>
+                                    <button class="primary delete" data-id="{{ $pass->id }}">
+                                        USUŃ
+                                    </button>
+                                @endcan
+                                @can('isWorker')
+                                    <a href="{{ route('passes.edit', $pass->id) }}"><button>EDYTUJ</button></a>
+                                    <button class="primary delete" data-id="{{ $pass->id }}">
+                                        USUŃ
+                                    </button>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach
@@ -65,6 +82,7 @@
         </div>
     </div>
 @endsection
+
 @section('javascript')
     $(function() {
         $('.delete').click(function() {
@@ -83,7 +101,6 @@
             .fail(function(response){
                 alert("Error");
             });
-
         });
     });
 @endsection

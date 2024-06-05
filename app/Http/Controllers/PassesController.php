@@ -14,11 +14,12 @@ class PassesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Passes $passesUser): View
     {
         if (Auth::check()) {
-            $user = Auth::user();
-            return view("passes.index", ['username' => $user->name,'passes' => Passes::paginate(3)]);
+            $currentUser = Auth::user();
+            $passesUser = Passes::find($currentUser->passes_id);
+            return view("passes.index", ['username' => $currentUser->name,'passes' => Passes::paginate(3),'passesUser' => $passesUser]);
         } else {
             return view('auth.login', ['username' => 'Nieznajomy']);
         }
