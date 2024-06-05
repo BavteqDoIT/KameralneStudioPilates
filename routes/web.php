@@ -11,7 +11,7 @@ use App\Http\Controllers\Privacy;
 use App\Http\Controllers\Rules;
 use App\Http\Controllers\Studio;
 use App\Http\Controllers\Welcome;
-use App\Http\Controllers\Schedule;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +47,15 @@ Route::get('classes/edit/{classes}', [ClassesController::class,'edit'])->name('c
 Route::post('classes/{classes}', [ClassesController::class,'update'])->name('classes.update')->middleware('auth');
 Route::delete('classes/{id}', [ClassesController::class,'destroy'])->name('classes.destroy');
 
-Route::get('schedule', [Schedule::class,'show'])->name('schedule');
+Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+Route::get('/schedule/create', [ScheduleController::class, 'create'])->name('schedule.create');
+Route::post('/schedule', [ScheduleController::class, 'store'])->name('schedule.store');
+Route::delete('/schedule/{id}', [ScheduleController::class, 'destroy'])->name('schedule.destroy');
+Route::post('schedule/{schedule}/join', [ScheduleController::class, 'joinSchedule'])->name('schedule.join');
+Route::delete('schedule/{schedule}/leave', [ScheduleController::class, 'leaveSchedule'])->name('schedule.leave');
+
+
+
 
 Route::get('contact', [Contact::class,'show'])->name('contact');
 

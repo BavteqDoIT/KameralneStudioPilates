@@ -19,4 +19,9 @@ class Classes extends Model
         'description',
         'slots'
     ];
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

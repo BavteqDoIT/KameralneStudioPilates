@@ -1,22 +1,23 @@
 @extends('layout.layout')
 @section('content')
     <div>
-        <h1>Twój Karnet</h1>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Nazwa</th>
-                    <th scope="col">Cena</th>
-                </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td>{{ $passesUser->name }}</td>
-                        <td>{{ $passesUser->price }}</td>
-                    </tr>
-            </tbody>
-        </table>
-
+        @if($passesUser)
+    <h1>Twój Karnet</h1>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Nazwa</th>
+                <th scope="col">Cena</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ $passesUser->name }}</td>
+                <td>{{ $passesUser->price }}</td>
+            </tr>
+        </tbody>
+    </table>
+@endif
         <div class="row">
             <div class="col-6">
                 <h1>Karnety</h1>

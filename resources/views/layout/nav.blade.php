@@ -7,7 +7,7 @@
         <li><a href="{{ route('studio') }}">STUDIO</a></li>
         <li><a href="{{ route('pilates') }}">PILATES</a></li>
         <li><a href="{{ route('ofert') }}">OFERTA / CENNIK</a></li>
-        <li><a href="{{ route('schedule') }}">GRAFIK</a></li>
+        <li><a href="{{ route('schedule.index') }}">GRAFIK</a></li>
         <li><a href="{{ route('contact') }}">KONTAKT</a></li>
         @auth
             <li>
