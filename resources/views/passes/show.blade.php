@@ -13,7 +13,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">Nazwa</label>
 
                             <div class="col-md-6">
-                                <input id="name" maxlength="500" type="text" class="form-control " name="name" value="{{ $classes->name }}" disabled>
+                                <input id="name" maxlength="500" type="text" class="form-control " name="name" value="{{ $passes->name }}" disabled>
                             </div>
                         </div>
 
@@ -21,7 +21,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-end">Opis</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" maxlength="1500" class="form-control " name="description" disabled>{{ $classes->description }}</textarea>
+                                <textarea id="description" maxlength="1500" class="form-control " name="description" disabled>{{ $passes->description }}</textarea>
                             </div>
                         </div>
 
@@ -29,7 +29,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-end">Cena</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" min="1" class="form-control" name="price" value="{{ $classes->price }}"disabled>
+                                <input id="price" type="number" min="1" class="form-control" name="price" value="{{ $passes->price }}"disabled>
                             </div>
                         </div>
                 </div>

@@ -54,7 +54,7 @@ class PassesController extends Controller
     {
         if (Auth::check()) {
             $user = Auth::user();
-            return view("passes.show", ['username' => $user->name, 'classes' => $passes]);
+            return view("passes.show", ['username' => $user->name, 'passes' => $passes]);
         } else {
             return view('auth.login', ['username' => 'Nieznajomy']);
         }

@@ -13,7 +13,7 @@
             <li>
                 <span class="opener">Mój profil</span>
                 <ul>
-                    <li><a href="#">Edytuj Profil</a></li>
+                    <li><a href="{{ route('user.index')}}">Podgląd profilu</a></li>
                     <li><a href="#">Zajęcia</a></li>
                     <li><a href="{{ route('passes.index')}}">Karnet</a></li>
                 </ul>

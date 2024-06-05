@@ -2,16 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Passes;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Passes $passes): View
     {
-        //
+        if (Auth::check()) {
+            $currentUser = Auth::user();
+            $passes = Passes::find($currentUser->passes_id);
+            return view("users.index", [
+                'username' => $currentUser->name,
+                'user' => $currentUser,
+                'passes' => $passes
+            ]);
+        } else {
+            return view('auth.login', ['username' => 'Nieznajomy']);
+        }
     }
 
     /**

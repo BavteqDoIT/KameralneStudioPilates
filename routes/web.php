@@ -12,6 +12,7 @@ use App\Http\Controllers\Rules;
 use App\Http\Controllers\Studio;
 use App\Http\Controllers\Welcome;
 use App\Http\Controllers\Schedule;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,6 +36,8 @@ Route::post('passes/{passes}', [PassesController::class,'update'])->name('passes
 Route::delete('passes/{id}', [PassesController::class,'destroy'])->name('passes.destroy');
 Route::get('passes/buy/{passes}', [PassesController::class,'buy'])->name('passes.buy')->middleware('auth');
 Route::post('passes/{passes}', [PassesController::class,'transaction'])->name('passes.transaction')->middleware('auth');
+
+Route::get('user', [UserController::class,'index'])->name('user.index')->middleware('auth');
 
 Route::get('classes', [ClassesController::class,'index'])->name('classes.index')->middleware('auth');
 Route::get('classes/create', [ClassesController::class,'create'])->name('classes.create')->middleware('auth');
